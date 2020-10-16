@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Technology
+{% endblock %}
+
+{% block content %}
+<p class="h2 text-center">Technology News</p>
+<p class="lead text-center">
+  Can't find the article you're looking for? Try the search bar.
+</p>
+{% for key, value in articles.items() %}
+<div>
+  {% if key != 'No title'%}
+    <p class="h5"><a href={{ value[0]}}>{{ key }}</a>
+  {% endif %}
+  {% if value[2] != 'No author'%}
+    <p class="lead">{{ value[2] }}</p>
+  {% endif %}
+  <p>{{ value[1] }}</p>
+</div>
+{% endfor %}
+{% endblock %}
