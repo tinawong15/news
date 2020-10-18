@@ -17,14 +17,22 @@ Entertainment
 </div>
 <br>
 {% for key, value in articles.items() %}
-<div>
-  {% if key != 'No title'%}
-    <p class="h5"><a href={{ value[0]}}>{{ key }}</a>
+<div class="mb-3">
+  {% if key != 'No title' %}
+    <p><span class="h5"><a href="{{ value[0]}}" target="_blank">{{ key }}</a>
   {% endif %}
-  {% if value[2] != 'No author'%}
-    <p class="lead">{{ value[2] }}</p>
+  {% if value[2] != 'No author' %}
+  <small class="text-muted font-italic">by {{ value[2] }}</small></span></p>
+    <!-- <p class="lead">{{ value[2] }}</p></div> -->
   {% endif %}
+  {% if value[3] != ''%}
+  <div class="row">
+    <div class="col-3"><img src="{{ value[3] }}" alt="" class="img-responsive" width="100%"></div>
+    <div class="col-8">{{ value[1] }}</div>
+  </div>
+  {% else %}
   <p>{{ value[1] }}</p>
+  {% endif %}
 </div>
 {% endfor %}
 {% endblock %}

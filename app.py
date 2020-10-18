@@ -26,6 +26,7 @@ def entertainment():
             urls = news.list_article_urls(raw_json)
             descriptions = news.list_article_desc(raw_json)
             authors = news.list_article_authors(raw_json)
+            imgs = news.list_article_imgs(raw_json)
             flash("Search is successful!", "success")
         else:
             raw_json = news.top_headlines_by_topic('entertainment')
@@ -33,6 +34,7 @@ def entertainment():
             urls = news.list_article_urls(raw_json)
             descriptions = news.list_article_desc(raw_json)
             authors = news.list_article_authors(raw_json)
+            imgs = news.list_article_imgs(raw_json)
     except:
         flash("Unable to retrieve articles.", "danger")
         raw_json = {}
@@ -40,9 +42,10 @@ def entertainment():
         urls = []
         descriptions = []
         authors = []
+        imgs = []
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i]]
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
     # print(articles)
     return render_template("entertainment.html", articles=articles)
 
@@ -60,12 +63,14 @@ def sports():
             urls = news.list_article_urls(raw_json)
             descriptions = news.list_article_desc(raw_json)
             authors = news.list_article_authors(raw_json)
+            imgs = news.list_article_imgs(raw_json)
             flash("Search is successful!", "success")
         else:
             raw_json = news.top_headlines_by_topic('sports')
             titles = news.list_article_titles(raw_json)
             urls = news.list_article_urls(raw_json)
             descriptions = news.list_article_desc(raw_json)
+            imgs = news.list_article_imgs(raw_json)
             authors = news.list_article_authors(raw_json)
     except:
         flash("Unable to retrieve articles.", "danger")
@@ -74,9 +79,10 @@ def sports():
         urls = []
         descriptions = []
         authors = []
+        imgs = []
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i]]
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
     # print(articles)
     return render_template("sports.html", articles=articles)
 
@@ -94,6 +100,7 @@ def technology():
             urls = news.list_article_urls(raw_json)
             descriptions = news.list_article_desc(raw_json)
             authors = news.list_article_authors(raw_json)
+            imgs = news.list_article_imgs(raw_json)
             flash("Search is successful!", "success")
         else:
             raw_json = news.top_headlines_by_topic('technology')
@@ -101,6 +108,7 @@ def technology():
             urls = news.list_article_urls(raw_json)
             descriptions = news.list_article_desc(raw_json)
             authors = news.list_article_authors(raw_json)
+            imgs = news.list_article_imgs(raw_json)
     except:
         flash("Unable to retrieve articles.", "danger")
         raw_json = {}
@@ -108,9 +116,10 @@ def technology():
         urls = []
         descriptions = []
         authors = []
+        imgs = []
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i]]
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
     # print(articles)
     return render_template("technology.html", articles=articles)
 
