@@ -7,15 +7,23 @@ Entertainment
 {% block content %}
 <p class="h2 text-center">Entertainment News</p>
 <p class="lead text-center">
-  Can't find the article you're looking for? Try the search bar.
+  Can't find the entertainment article you're looking for? Try the search bar.
 </p>
+<div class="row justify-content-center">
+<form class="form-inline" action="/entertainment" method="POST">
+    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search Entertainment">
+</form>
+</div>
+<br>
 {% for key, value in articles.items() %}
 <div>
   {% if key != 'No title'%}
-    <p class="h5"><a href={{ value[0]}}>{{ key }}</a>
+    <p><span class="h5"><a href={{ value[0]}}>{{ key }}</a>
   {% endif %}
   {% if value[2] != 'No author'%}
-    <p class="lead">{{ value[2] }}</p>
+  <small class="text-muted font-italic">by {{ value[2] }}</small></span></p>
+    <!-- <p class="lead">{{ value[2] }}</p></div> -->
   {% endif %}
   <p>{{ value[1] }}</p>
 </div>

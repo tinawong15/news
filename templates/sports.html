@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 
 {% block title %}
-Sports
+Entertainment
 {% endblock %}
 
 {% block content %}
 <p class="h2 text-center">Sports News</p>
 <p class="lead text-center">
-  Can't find the article you're looking for? Try the search bar.
+  Can't find the sports article you're looking for? Try the search bar.
 </p>
+<div class="row justify-content-center">
+<form class="form-inline" action="/sports" method="POST">
+    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search Sports">
+</form>
+</div>
+<br>
 {% for key, value in articles.items() %}
 <div>
   {% if key != 'No title'%}

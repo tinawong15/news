@@ -33,13 +33,15 @@
       </li>
 
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
 <div class="mx-5" style="margin-top: 70px;">
+  <!-- flashed messages -->
+      {% set msgs = get_flashed_messages( with_categories=true ) %}
+      {% for category, msg in msgs %}
+      <div class="alert alert-{{ category }}" role="alert">{{ msg }}</div>
+      {% endfor %}
+      <!-- end flashed messages -->
      {% block content %}
     {% endblock %}
     {% block footer %}
