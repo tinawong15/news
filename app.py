@@ -14,114 +14,133 @@ def index():
 
 @app.route('/entertainment', methods=['GET','POST'])
 def entertainment():
-    # try-except block added in case the API calls fail
     articles = {}
+    headlines = {}
+    raw_json = {}
+    titles = []
+    urls = []
+    descriptions = []
+    authors = []
+    imgs = []
+
+    # try-except block added in case the API calls fail
     try:
-        keywords = request.form.get('search')
+        keywords = []
         if request.method == 'POST':
+            keywords = request.form.get('search')
             keywords = keywords.split(" ")
             print(keywords)
-            raw_json = news.search('entertainment', keywords)
-            titles = news.list_article_titles(raw_json)
-            urls = news.list_article_urls(raw_json)
-            descriptions = news.list_article_desc(raw_json)
-            authors = news.list_article_authors(raw_json)
-            imgs = news.list_article_imgs(raw_json)
             flash("Search is successful!", "success")
         else:
-            raw_json = news.top_headlines_by_topic('entertainment')
-            titles = news.list_article_titles(raw_json)
-            urls = news.list_article_urls(raw_json)
-            descriptions = news.list_article_desc(raw_json)
-            authors = news.list_article_authors(raw_json)
-            imgs = news.list_article_imgs(raw_json)
+            headlines_raw_json = news.top_headlines_by_topic('entertainment')
+            headlines_titles = news.list_article_titles(headlines_raw_json)
+            headlines_urls = news.list_article_urls(headlines_raw_json)
+            headlines_descriptions = news.list_article_desc(headlines_raw_json)
+            headlines_imgs = news.list_article_imgs(headlines_raw_json)
+            headlines_authors = news.list_article_authors(headlines_raw_json)
+            for i in range(len(headlines_titles)):
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i]]
+        raw_json = news.search('entertainment', keywords)
+        print(raw_json)
+        titles = news.list_article_titles(raw_json)
+        urls = news.list_article_urls(raw_json)
+        descriptions = news.list_article_desc(raw_json)
+        authors = news.list_article_authors(raw_json)
+        imgs = news.list_article_imgs(raw_json)
     except:
         flash("Unable to retrieve articles.", "danger")
-        raw_json = {}
-        titles = []
-        urls = []
-        descriptions = []
-        authors = []
-        imgs = []
 
     for i in range(len(titles)):
         articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
     # print(articles)
-    return render_template("entertainment.html", articles=articles)
+    return render_template("entertainment.html", articles=articles, headlines=headlines)
 
 @app.route('/sports', methods=['GET','POST'])
 def sports():
-    # try-except block added in case the API calls fail
     articles = {}
+    headlines = {}
+    raw_json = {}
+    titles = []
+    urls = []
+    descriptions = []
+    authors = []
+    imgs = []
+
+    # try-except block added in case the API calls fail
     try:
-        keywords = request.form.get('search')
+        keywords = []
         if request.method == 'POST':
+            keywords = request.form.get('search')
             keywords = keywords.split(" ")
             print(keywords)
-            raw_json = news.search('sports', keywords)
-            titles = news.list_article_titles(raw_json)
-            urls = news.list_article_urls(raw_json)
-            descriptions = news.list_article_desc(raw_json)
-            authors = news.list_article_authors(raw_json)
-            imgs = news.list_article_imgs(raw_json)
             flash("Search is successful!", "success")
         else:
-            raw_json = news.top_headlines_by_topic('sports')
-            titles = news.list_article_titles(raw_json)
-            urls = news.list_article_urls(raw_json)
-            descriptions = news.list_article_desc(raw_json)
-            imgs = news.list_article_imgs(raw_json)
-            authors = news.list_article_authors(raw_json)
+            headlines_raw_json = news.top_headlines_by_topic('sports')
+            headlines_titles = news.list_article_titles(headlines_raw_json)
+            headlines_urls = news.list_article_urls(headlines_raw_json)
+            headlines_descriptions = news.list_article_desc(headlines_raw_json)
+            headlines_imgs = news.list_article_imgs(headlines_raw_json)
+            headlines_authors = news.list_article_authors(headlines_raw_json)
+            for i in range(len(headlines_titles)):
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i]]
+        raw_json = news.search('sports', keywords)
+        print(raw_json)
+        titles = news.list_article_titles(raw_json)
+        urls = news.list_article_urls(raw_json)
+        descriptions = news.list_article_desc(raw_json)
+        authors = news.list_article_authors(raw_json)
+        imgs = news.list_article_imgs(raw_json)
     except:
         flash("Unable to retrieve articles.", "danger")
-        raw_json = {}
-        titles = []
-        urls = []
-        descriptions = []
-        authors = []
-        imgs = []
 
     for i in range(len(titles)):
         articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
     # print(articles)
-    return render_template("sports.html", articles=articles)
+    return render_template("sports.html", articles=articles, headlines=headlines)
 
 @app.route('/technology', methods=['GET','POST'])
 def technology():
-    # try-except block added in case the API calls fail
     articles = {}
+    headlines = {}
+    raw_json = {}
+    titles = []
+    urls = []
+    descriptions = []
+    authors = []
+    imgs = []
+
+    # try-except block added in case the API calls fail
     try:
-        keywords = request.form.get('search')
+        keywords = []
+        print(keywords)
         if request.method == 'POST':
+            keywords = request.form.get('search')
             keywords = keywords.split(" ")
             print(keywords)
-            raw_json = news.search('technology', keywords)
-            titles = news.list_article_titles(raw_json)
-            urls = news.list_article_urls(raw_json)
-            descriptions = news.list_article_desc(raw_json)
-            authors = news.list_article_authors(raw_json)
-            imgs = news.list_article_imgs(raw_json)
             flash("Search is successful!", "success")
         else:
-            raw_json = news.top_headlines_by_topic('technology')
-            titles = news.list_article_titles(raw_json)
-            urls = news.list_article_urls(raw_json)
-            descriptions = news.list_article_desc(raw_json)
-            authors = news.list_article_authors(raw_json)
-            imgs = news.list_article_imgs(raw_json)
+            headlines_raw_json = news.top_headlines_by_topic('technology')
+            headlines_titles = news.list_article_titles(headlines_raw_json)
+            headlines_urls = news.list_article_urls(headlines_raw_json)
+            headlines_descriptions = news.list_article_desc(headlines_raw_json)
+            headlines_imgs = news.list_article_imgs(headlines_raw_json)
+            headlines_authors = news.list_article_authors(headlines_raw_json)
+            for i in range(len(headlines_titles)):
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i]]
+        raw_json = news.search('technology', keywords)
+        print(raw_json)
+        titles = news.list_article_titles(raw_json)
+        urls = news.list_article_urls(raw_json)
+        descriptions = news.list_article_desc(raw_json)
+        authors = news.list_article_authors(raw_json)
+        imgs = news.list_article_imgs(raw_json)
     except:
         flash("Unable to retrieve articles.", "danger")
-        raw_json = {}
-        titles = []
-        urls = []
-        descriptions = []
-        authors = []
-        imgs = []
 
     for i in range(len(titles)):
         articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
     # print(articles)
-    return render_template("technology.html", articles=articles)
+    return render_template("technology.html", articles=articles, headlines=headlines)
 
 if __name__ == "__main__":
     app.debug = True

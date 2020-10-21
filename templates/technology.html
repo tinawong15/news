@@ -5,9 +5,9 @@ Technology
 {% endblock %}
 
 {% block content %}
-<p class="h2 text-center">Technology News</p>
+<p class="display-4 text-center">Technology News</p>
 <p class="lead text-center">
-  Can't find the technology article you're looking for? Try the search bar.
+  Can't find the entertainment article you're looking for? Try the search bar.
 </p>
 <div class="row justify-content-center">
 <form class="form-inline" action="/technology" method="POST">
@@ -16,6 +16,30 @@ Technology
 </form>
 </div>
 <br>
+{% if headlines != {} %}
+<h2 class="h2 mb-3 text-center">Top Headlines</h2>
+{% for key, value in headlines.items() %}
+<div class="mb-3">
+  {% if key != 'No title' %}
+    <p><span class="h5"><a href="{{ value[0]}}" target="_blank">{{ key }}</a>
+  {% endif %}
+  {% if value[2] != 'No author' %}
+  <small class="text-muted font-italic">by {{ value[2] }}</small></span></p>
+    <!-- <p class="lead">{{ value[2] }}</p></div> -->
+  {% endif %}
+  {% if value[3] != ''%}
+  <div class="row">
+    <div class="col-3"><img src="{{ value[3] }}" alt="" class="img-responsive" width="100%"></div>
+    <div class="col-8">{{ value[1] }}</div>
+  </div>
+  {% else %}
+  <p>{{ value[1] }}</p>
+  {% endif %}
+</div>
+{% endfor %}
+<hr>
+<h2 class="h2 mb-3 text-center">In Other News...</h2>
+{% endif %}
 {% for key, value in articles.items() %}
 <div class="mb-3">
   {% if key != 'No title' %}
