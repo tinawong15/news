@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 
-from util import news
+from .util import news
 
 app = Flask(__name__)
 
@@ -141,7 +141,3 @@ def technology():
         articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
     # print(articles)
     return render_template("technology.html", articles=articles, headlines=headlines)
-
-if __name__ == "__main__":
-    app.debug = True
-    app.run()

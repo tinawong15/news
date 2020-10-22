@@ -1,9 +1,12 @@
-import json
+import os, json
 import urllib.request
 
 API_LINK = 'https://newsapi.org/v2/top-headlines?'
 
-with open('data/keys.json', 'r') as f:
+DIR = os.path.dirname(__file__) or '.'
+DIR += '/../'
+KEYS_LINK = DIR + "data/keys.json"
+with open(KEYS_LINK, 'r') as f:
     api_dict = json.load(f)
 
 # API_KEY = ""
