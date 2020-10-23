@@ -23,9 +23,16 @@ Sports
   {% if key != 'No title' %}
     <p><span class="h5"><a href="{{ value[0]}}" target="_blank">{{ key }}</a>
   {% endif %}
+  <small class="text-muted font-italic">
   {% if value[2] != 'No author' %}
-  <small class="text-muted font-italic">by {{ value[2] }}</small></span></p>
+  by {{ value[2] }}, {{ value[4]}}
     <!-- <p class="lead">{{ value[2] }}</p></div> -->
+  {% else %}
+  {{ value[4]}}
+  {% endif %}
+  </small></span></p>
+  {% if value[5] != '' %}
+  <p class="h5" style="margin-top: -12px"><small class="text-muted">{{ value[5] }}</small></p>
   {% endif %}
   {% if value[3] != ''%}
   <div class="row">
@@ -45,9 +52,16 @@ Sports
   {% if key != 'No title' %}
     <p><span class="h5"><a href="{{ value[0]}}" target="_blank">{{ key }}</a>
   {% endif %}
+  <small class="text-muted font-italic">
   {% if value[2] != 'No author' %}
-  <small class="text-muted font-italic">by {{ value[2] }}</small></span></p>
+  by {{ value[2] }}, {{ value[4]}}
     <!-- <p class="lead">{{ value[2] }}</p></div> -->
+  {% else %}
+  {{ value[4]}}
+  {% endif %}
+  </small></span></p>
+  {% if value[5] != '' %}
+  <p class="h5" style="margin-top: -12px"><small class="text-muted">{{ value[5] }}</small></p>
   {% endif %}
   {% if value[3] != ''%}
   <div class="row">

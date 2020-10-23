@@ -1,5 +1,6 @@
 import os, json
 import urllib.request
+import datetime
 
 API_LINK = 'https://newsapi.org/v2/top-headlines?'
 
@@ -87,3 +88,31 @@ def list_article_imgs(raw_json):
         else:
             result.append(article['urlToImage'])
     return result
+
+def list_article_sources(raw_json):
+    '''This function returns a list of article sources based off of raw json data'''
+    result = []
+
+    for article in raw_json['articles']:
+        if article['source']['name'] == None:
+            result.append('')
+        else:
+            result.append(article['source']['name'])
+    return result
+
+def list_article_dates(raw_json):
+    '''This function returns a list of article dates based off of raw json data'''
+    result = []
+
+    for article in raw_json['articles']:
+        if article['publishedAt'] == None:
+            result.append('')
+        else:
+            result.append(article['publishedAt'])
+    return result
+
+def convert_dates(string_dates_list):
+    dates = []
+    for string_date in string_dates_list:
+        dates.append(datetime.datetime.strptime(string_date[:10], "%Y-%m-%d").strftime("%B %d, %Y"))
+    return dates

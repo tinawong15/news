@@ -26,32 +26,39 @@ def entertainment():
     # try-except block added in case the API calls fail
     try:
         keywords = []
+        # check if user has entered text into the search bar
         if request.method == 'POST':
             keywords = request.form.get('search')
             keywords = keywords.split(" ")
-            print(keywords)
+            # print(keywords)
             flash("Search is successful!", "success")
         else:
+            # retrieve information about top headlines related to entertainment from News API
             headlines_raw_json = news.top_headlines_by_topic('entertainment')
             headlines_titles = news.list_article_titles(headlines_raw_json)
             headlines_urls = news.list_article_urls(headlines_raw_json)
             headlines_descriptions = news.list_article_desc(headlines_raw_json)
             headlines_imgs = news.list_article_imgs(headlines_raw_json)
             headlines_authors = news.list_article_authors(headlines_raw_json)
+            headlines_sources = news.list_article_sources(headlines_raw_json)
+            headlines_dates = news.convert_dates(news.list_article_dates(headlines_raw_json))
             for i in range(len(headlines_titles)):
-                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i]]
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i]]
+        # retrieve information about all news related to entertainment from News API
         raw_json = news.search('entertainment', keywords)
-        print(raw_json)
+        # print(raw_json)
         titles = news.list_article_titles(raw_json)
         urls = news.list_article_urls(raw_json)
         descriptions = news.list_article_desc(raw_json)
         authors = news.list_article_authors(raw_json)
         imgs = news.list_article_imgs(raw_json)
+        sources = news.list_article_sources(raw_json)
+        dates = news.convert_dates(news.list_article_dates(raw_json))
     except:
         flash("Unable to retrieve articles.", "danger")
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i]]
     # print(articles)
     return render_template("entertainment.html", articles=articles, headlines=headlines)
 
@@ -69,20 +76,25 @@ def sports():
     # try-except block added in case the API calls fail
     try:
         keywords = []
+        # check if user has entered text into the search bar
         if request.method == 'POST':
             keywords = request.form.get('search')
             keywords = keywords.split(" ")
-            print(keywords)
+            # print(keywords)
             flash("Search is successful!", "success")
         else:
+            # retrieve information about top headlines related to entertainment from News API
             headlines_raw_json = news.top_headlines_by_topic('sports')
             headlines_titles = news.list_article_titles(headlines_raw_json)
             headlines_urls = news.list_article_urls(headlines_raw_json)
             headlines_descriptions = news.list_article_desc(headlines_raw_json)
-            headlines_imgs = news.list_article_imgs(headlines_raw_json)
             headlines_authors = news.list_article_authors(headlines_raw_json)
+            headlines_imgs = news.list_article_imgs(headlines_raw_json)
+            headlines_sources = news.list_article_sources(headlines_raw_json)
+            headlines_dates = news.convert_dates(news.list_article_dates(headlines_raw_json))
             for i in range(len(headlines_titles)):
-                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i]]
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i]]
+        # retrieve information about all news related to sports from News API
         raw_json = news.search('sports', keywords)
         print(raw_json)
         titles = news.list_article_titles(raw_json)
@@ -90,12 +102,14 @@ def sports():
         descriptions = news.list_article_desc(raw_json)
         authors = news.list_article_authors(raw_json)
         imgs = news.list_article_imgs(raw_json)
+        sources = news.list_article_sources(raw_json)
+        dates = news.convert_dates(news.list_article_dates(raw_json))
     except:
         flash("Unable to retrieve articles.", "danger")
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
-    # print(articles)
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i]]
+    print(articles)
     return render_template("sports.html", articles=articles, headlines=headlines)
 
 @app.route('/technology', methods=['GET','POST'])
@@ -112,32 +126,43 @@ def technology():
     # try-except block added in case the API calls fail
     try:
         keywords = []
-        print(keywords)
+        # check if user has entered text into the search bar
         if request.method == 'POST':
             keywords = request.form.get('search')
             keywords = keywords.split(" ")
-            print(keywords)
+            # print(keywords)
             flash("Search is successful!", "success")
         else:
+            # retrieve information about top headlines related to entertainment from News API
             headlines_raw_json = news.top_headlines_by_topic('technology')
             headlines_titles = news.list_article_titles(headlines_raw_json)
             headlines_urls = news.list_article_urls(headlines_raw_json)
             headlines_descriptions = news.list_article_desc(headlines_raw_json)
-            headlines_imgs = news.list_article_imgs(headlines_raw_json)
             headlines_authors = news.list_article_authors(headlines_raw_json)
+            headlines_imgs = news.list_article_imgs(headlines_raw_json)
+            headlines_sources = news.list_article_sources(headlines_raw_json)
+            headlines_dates = news.convert_dates(news.list_article_dates(headlines_raw_json))
             for i in range(len(headlines_titles)):
-                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i]]
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i]]
+        # retrieve information about all news related to technology from News API
         raw_json = news.search('technology', keywords)
-        print(raw_json)
+        # print(raw_json)
         titles = news.list_article_titles(raw_json)
         urls = news.list_article_urls(raw_json)
         descriptions = news.list_article_desc(raw_json)
         authors = news.list_article_authors(raw_json)
         imgs = news.list_article_imgs(raw_json)
+        sources = news.list_article_sources(raw_json)
+        dates = news.convert_dates(news.list_article_dates(raw_json))
     except:
         flash("Unable to retrieve articles.", "danger")
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i]]
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i]]
     # print(articles)
     return render_template("technology.html", articles=articles, headlines=headlines)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # address return code
+    return render_template('404.html'), 404
