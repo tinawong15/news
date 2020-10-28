@@ -30,10 +30,19 @@ Entertainment
   {% else %}
   {{ value[4]}}
   {% endif %}
-  </small></span></p>
-  {% if value[5] != '' %}
-  <p class="h5" style="margin-top: -12px"><small class="text-muted">{{ value[5] }}</small></p>
-  {% endif %}
+  </small>
+</span></p>
+  <p class="h5" style="margin-top: -12px">
+    {% if value[5] != '' %}
+    <small class="text-muted">{{ value[5] }}
+    </small>
+    {% endif %}
+    <small class="text-muted">
+      {% if value[6] == True %}
+      &nbsp; <code>✓ Paywall</code>
+      {% endif %}
+    </small>
+  </p>
   {% if value[3] != ''%}
   <div class="row">
     <div class="col-3"><img src="{{ value[3] }}" alt="" class="img-responsive" width="100%"></div>
@@ -59,10 +68,22 @@ Entertainment
   {% else %}
   {{ value[4]}}
   {% endif %}
-  </small></span></p>
-  {% if value[5] != '' %}
-  <p class="h5" style="margin-top: -12px"><small class="text-muted">{{ value[5] }}</small></p>
-  {% endif %}
+  </small>
+
+  </span>
+</p>
+  <p class="h5" style="margin-top: -12px">
+    <small class="text-muted">
+      {% if value[5] != '' %}
+      {{ value[5] }}
+    {% endif %}
+  </small>
+  <small class="text-muted">
+    {% if value[6] == True %}
+    &nbsp; <code>✓ Paywall</code>
+    {% endif %}
+  </small>
+  </p>
   {% if value[3] != ''%}
   <div class="row">
     <div class="col-3"><img src="{{ value[3] }}" alt="" class="img-responsive" width="100%"></div>

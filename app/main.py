@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 app.secret_key = os.urandom(32)
 
+PAYWALLS = ["New York Times","Bloomberg","Vanity Fair","National Post","The Economist","The Guardian","The Wall Street Journal","The Washington Post","Financial Times","Medium"]
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template("index.html")
@@ -41,9 +43,11 @@ def entertainment():
             headlines_imgs = news.list_article_imgs(headlines_raw_json)
             headlines_authors = news.list_article_authors(headlines_raw_json)
             headlines_sources = news.list_article_sources(headlines_raw_json)
+            headlines_paywalls = [True if source in PAYWALLS else False for source in headlines_sources]
+            # print(paywalls)
             headlines_dates = news.convert_dates(news.list_article_dates(headlines_raw_json))
             for i in range(len(headlines_titles)):
-                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i]]
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i], headlines_paywalls[i]]
         # retrieve information about all news related to entertainment from News API
         raw_json = news.search('entertainment', keywords)
         # print(raw_json)
@@ -53,12 +57,13 @@ def entertainment():
         authors = news.list_article_authors(raw_json)
         imgs = news.list_article_imgs(raw_json)
         sources = news.list_article_sources(raw_json)
+        paywalls = [True if source in PAYWALLS else False for source in sources]
         dates = news.convert_dates(news.list_article_dates(raw_json))
     except:
         flash("Unable to retrieve articles.", "danger")
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i]]
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i], paywalls[i]]
     # print(articles)
     return render_template("entertainment.html", articles=articles, headlines=headlines)
 
@@ -91,9 +96,10 @@ def sports():
             headlines_authors = news.list_article_authors(headlines_raw_json)
             headlines_imgs = news.list_article_imgs(headlines_raw_json)
             headlines_sources = news.list_article_sources(headlines_raw_json)
+            headlines_paywalls = [True if source in PAYWALLS else False for source in headlines_sources]
             headlines_dates = news.convert_dates(news.list_article_dates(headlines_raw_json))
             for i in range(len(headlines_titles)):
-                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i]]
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i], headlines_paywalls[i]]
         # retrieve information about all news related to sports from News API
         raw_json = news.search('sports', keywords)
         print(raw_json)
@@ -103,13 +109,14 @@ def sports():
         authors = news.list_article_authors(raw_json)
         imgs = news.list_article_imgs(raw_json)
         sources = news.list_article_sources(raw_json)
+        paywalls = [True if source in PAYWALLS else False for source in sources]
         dates = news.convert_dates(news.list_article_dates(raw_json))
     except:
         flash("Unable to retrieve articles.", "danger")
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i]]
-    print(articles)
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i], paywalls[i]]
+    # print(articles)
     return render_template("sports.html", articles=articles, headlines=headlines)
 
 @app.route('/technology', methods=['GET','POST'])
@@ -141,9 +148,10 @@ def technology():
             headlines_authors = news.list_article_authors(headlines_raw_json)
             headlines_imgs = news.list_article_imgs(headlines_raw_json)
             headlines_sources = news.list_article_sources(headlines_raw_json)
+            headlines_paywalls = [True if source in PAYWALLS else False for source in headlines_sources]
             headlines_dates = news.convert_dates(news.list_article_dates(headlines_raw_json))
             for i in range(len(headlines_titles)):
-                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i]]
+                headlines[headlines_titles[i]] = [headlines_urls[i], headlines_descriptions[i], headlines_authors[i], headlines_imgs[i], headlines_sources[i], headlines_dates[i], headlines_paywalls[i]]
         # retrieve information about all news related to technology from News API
         raw_json = news.search('technology', keywords)
         # print(raw_json)
@@ -153,12 +161,13 @@ def technology():
         authors = news.list_article_authors(raw_json)
         imgs = news.list_article_imgs(raw_json)
         sources = news.list_article_sources(raw_json)
+        paywalls = [True if source in PAYWALLS else False for source in sources]
         dates = news.convert_dates(news.list_article_dates(raw_json))
     except:
         flash("Unable to retrieve articles.", "danger")
 
     for i in range(len(titles)):
-        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i]]
+        articles[titles[i]] = [urls[i], descriptions[i], authors[i], imgs[i], sources[i], dates[i], paywalls[i]]
     # print(articles)
     return render_template("technology.html", articles=articles, headlines=headlines)
 

@@ -20,7 +20,6 @@ def search(topic, keywords):
     for keyword in keywords:
         url += "+"+keyword
     url += ('&'
-       'language=en&'
        'apiKey=' + API_KEY)
     response = urllib.request.urlopen(url)
     return json.loads(response.read())
@@ -29,7 +28,6 @@ def top_headlines_by_topic(topic):
     '''This function gets raw json data of top headlines by topic'''
     url = ('https://newsapi.org/v2/top-headlines?'
        'q=' + topic + '&'
-       'language=en&'
        'apiKey=' + API_KEY)
     response = urllib.request.urlopen(url)
     return json.loads(response.read())
