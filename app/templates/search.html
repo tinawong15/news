@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+<p class="display-4 text-center">Search</p>
+<div class="row justify-content-center">
+<form class="form-inline" action="/search" method="POST">
+    <input class="form-control form-control-lg mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+      <select id="category" class="form-control form-control-lg selectpicker mr-sm-2" multiple>
+        <option value="entertainment">Entertainment</option>
+        <option value="sports">Sports</option>
+        <option value="technology">Technology</option>
+      </select>
+    <input class="btn btn-lg btn-outline-success my-2 my-sm-0" type="submit" onclick="getValues()" name="go" value="Go!">
+    <input type="hidden" name="tag_list" id="tag_list" value="" />
+</form>
+</div>
+<br>
+<br>
+
+{% if entertainment != {} %}
+<h2 class="h2 mb-3 text-center">Entertainment Results</h2>
+{% for key, value in entertainment.items() %}
+<div class="mb-3">
+  {% if key != 'No title' %}
+    <p><span class="h5"><a href="{{ value[0]}}" target="_blank">{{ key }}</a>
+  {% endif %}
+  <small class="text-muted font-italic">
+  {% if value[2] != 'No author' %}
+  by {{ value[2] }}, {{ value[4]}}
+    <!-- <p class="lead">{{ value[2] }}</p></div> -->
+  {% else %}
+  {{ value[4]}}
+  {% endif %}
+  </small>
+</span></p>
+  <p class="h5" style="margin-top: -12px">
+    {% if value[5] != '' %}
+    <small class="text-muted">{{ value[5] }}
+    </small>
+    {% endif %}
+    <small class="text-muted">
+      {% if value[6] == True %}
+      &nbsp; <code>✓ Paywall</code>
+      {% endif %}
+    </small>
+  </p>
+  {% if value[3] != ''%}
+  <div class="row">
+    <div class="col-3"><img src="{{ value[3] }}" alt="" class="img-responsive" width="100%"></div>
+    <div class="col-8">{{ value[1] }}</div>
+  </div>
+  {% else %}
+  <p>{{ value[1] }}</p>
+  {% endif %}
+</div>
+{% endfor %}
+{% endif %}
+{% if sports != {} %}
+<h2 class="h2 mb-3 text-center">Sports Results</h2>
+{% for key, value in sports.items() %}
+<div class="mb-3">
+  {% if key != 'No title' %}
+    <p><span class="h5"><a href="{{ value[0]}}" target="_blank">{{ key }}</a>
+  {% endif %}
+  <small class="text-muted font-italic">
+  {% if value[2] != 'No author' %}
+  by {{ value[2] }}, {{ value[4]}}
+    <!-- <p class="lead">{{ value[2] }}</p></div> -->
+  {% else %}
+  {{ value[4]}}
+  {% endif %}
+  </small>
+</span></p>
+  <p class="h5" style="margin-top: -12px">
+    {% if value[5] != '' %}
+    <small class="text-muted">{{ value[5] }}
+    </small>
+    {% endif %}
+    <small class="text-muted">
+      {% if value[6] == True %}
+      &nbsp; <code>✓ Paywall</code>
+      {% endif %}
+    </small>
+  </p>
+  {% if value[3] != ''%}
+  <div class="row">
+    <div class="col-3"><img src="{{ value[3] }}" alt="" class="img-responsive" width="100%"></div>
+    <div class="col-8">{{ value[1] }}</div>
+  </div>
+  {% else %}
+  <p>{{ value[1] }}</p>
+  {% endif %}
+</div>
+{% endfor %}
+{% endif %}
+{% if technology != {} %}
+<h2 class="h2 mb-3 text-center">Technology Results</h2>
+{% for key, value in technology.items() %}
+<div class="mb-3">
+  {% if key != 'No title' %}
+    <p><span class="h5"><a href="{{ value[0]}}" target="_blank">{{ key }}</a>
+  {% endif %}
+  <small class="text-muted font-italic">
+  {% if value[2] != 'No author' %}
+  by {{ value[2] }}, {{ value[4]}}
+    <!-- <p class="lead">{{ value[2] }}</p></div> -->
+  {% else %}
+  {{ value[4]}}
+  {% endif %}
+  </small>
+</span></p>
+  <p class="h5" style="margin-top: -12px">
+    {% if value[5] != '' %}
+    <small class="text-muted">{{ value[5] }}
+    </small>
+    {% endif %}
+    <small class="text-muted">
+      {% if value[6] == True %}
+      &nbsp; <code>✓ Paywall</code>
+      {% endif %}
+    </small>
+  </p>
+  {% if value[3] != ''%}
+  <div class="row">
+    <div class="col-3"><img src="{{ value[3] }}" alt="" class="img-responsive" width="100%"></div>
+    <div class="col-8">{{ value[1] }}</div>
+  </div>
+  {% else %}
+  <p>{{ value[1] }}</p>
+  {% endif %}
+</div>
+{% endfor %}
+{% endif %}
+<script type="text/javascript">
+var slim = $.noConflict(true);
+</script>
+<script type="text/javascript">
+slim(document).ready(function() {
+  slim('select').selectpicker();
+});
+</script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>var min = $.noConflict(true);</script>
+<script type="text/javascript">
+function getValues() {
+  var vals=min("#category").val();
+  console.log(vals);
+  min('#tag_list').val(JSON.stringify(vals));
+}
+</script>
+{% endblock %}

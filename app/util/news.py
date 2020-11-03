@@ -15,11 +15,11 @@ API_KEY = api_dict["NEWS_API"]
 
 def search(topic, keywords):
     '''This function gets raw json data of articles related to the topic and other keywords'''
-    url = ('https://newsapi.org/v2/everything?'
-       'q=' + topic)
+    url = ('https://newsapi.org/v2/top-headlines?'
+       'category=' + topic + "&q=")
     for keyword in keywords:
         url += "+"+keyword
-    url += ('&'
+    url += ('&pageSize=100&'
        'apiKey=' + API_KEY)
     response = urllib.request.urlopen(url)
     return json.loads(response.read())
@@ -27,7 +27,7 @@ def search(topic, keywords):
 def top_headlines_by_topic(topic):
     '''This function gets raw json data of top headlines by topic'''
     url = ('https://newsapi.org/v2/top-headlines?'
-       'q=' + topic + '&'
+       'category=' + topic + '&pageSize=100&'
        'apiKey=' + API_KEY)
     response = urllib.request.urlopen(url)
     return json.loads(response.read())

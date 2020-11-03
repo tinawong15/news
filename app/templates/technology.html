@@ -5,19 +5,12 @@ Technology
 {% endblock %}
 
 {% block content %}
-<p class="display-4 text-center">Technology News</p>
+<p class="display-4 text-center">Top Technology News</p>
 <p class="lead text-center">
-  Can't find the technology article you're looking for? Try the search bar.
+  Can't find the article you're looking for? Try the <a href="/search">search</a>.
 </p>
-<div class="row justify-content-center">
-<form class="form-inline" action="/technology" method="POST">
-    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search Technology">
-</form>
-</div>
 <br>
 {% if headlines != {} %}
-<h2 class="h2 mb-3 text-center">Top Headlines</h2>
 {% for key, value in headlines.items() %}
 <div class="mb-3">
   {% if key != 'No title' %}
@@ -53,45 +46,8 @@ Technology
   {% endif %}
 </div>
 {% endfor %}
-<hr>
-<h2 class="h2 mb-3 text-center">In Other News...</h2>
 {% endif %}
-{% for key, value in articles.items() %}
-<div class="mb-3">
-  {% if key != 'No title' %}
-    <p><span class="h5"><a href="{{ value[0]}}" target="_blank">{{ key }}</a>
-  {% endif %}
-  <small class="text-muted font-italic">
-  {% if value[2] != 'No author' %}
-  by {{ value[2] }}, {{ value[4]}}
-    <!-- <p class="lead">{{ value[2] }}</p></div> -->
-  {% else %}
-  {{ value[4]}}
-  {% endif %}
-  </small>
-
-  </span>
-</p>
-  <p class="h5" style="margin-top: -12px">
-    <small class="text-muted">
-      {% if value[5] != '' %}
-      {{ value[5] }}
-    {% endif %}
-  </small>
-  <small class="text-muted">
-    {% if value[6] == True %}
-    &nbsp; <code>✓ Paywall</code>
-    {% endif %}
-  </small>
-  </p>
-  {% if value[3] != ''%}
-  <div class="row">
-    <div class="col-3"><img src="{{ value[3] }}" alt="" class="img-responsive" width="100%"></div>
-    <div class="col-8">{{ value[1] }}</div>
-  </div>
-  {% else %}
-  <p>{{ value[1] }}</p>
-  {% endif %}
+<div class="row justify-content-md-center">
+{{ pagination.links }}
 </div>
-{% endfor %}
 {% endblock %}
