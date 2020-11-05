@@ -3,7 +3,7 @@
 ## Overview
 The Daily is my submission for Capital One's 2020 Software Engineering Summit. It is a web application designed to streamline the process of finding top headlines and relevant news articles. You can search for any article across the categories of Entertainment, Sports, and Technology.
 
-This application has been tested on Google Chrome and Safari.
+This application has been tested on Google Chrome and Safari. On Safari, some images may not show up because the browser is unable to render the image. In that case, there will be a box with a question mark replacing the image.
 
 ## Tools and Libraries Used
 - **Flask**: Python web microframework
