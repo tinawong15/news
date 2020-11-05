@@ -14,8 +14,8 @@ with open(KEYS_LINK, 'r') as f:
 API_KEY = api_dict["NEWS_API"]
 
 def search(topic, keywords):
-    '''This function gets raw json data of articles related to the topic and other keywords'''
-    url = ('https://newsapi.org/v2/top-headlines?'
+    '''This function gets raw json data of articles related to the category and other keywords'''
+    url = (API_LINK+
        'category=' + topic + "&q=")
     for keyword in keywords:
         url += "+"+keyword
@@ -26,7 +26,7 @@ def search(topic, keywords):
 
 def top_headlines_by_topic(topic):
     '''This function gets raw json data of top headlines by topic'''
-    url = ('https://newsapi.org/v2/top-headlines?'
+    url = (API_LINK+
        'category=' + topic + '&pageSize=100&'
        'apiKey=' + API_KEY)
     response = urllib.request.urlopen(url)
@@ -110,6 +110,7 @@ def list_article_dates(raw_json):
     return result
 
 def convert_dates(string_dates_list):
+    '''This function converts all dates into a format of [MONTH] [DAY], [YEAR]'''
     dates = []
     for string_date in string_dates_list:
         dates.append(datetime.datetime.strptime(string_date[:10], "%Y-%m-%d").strftime("%B %d, %Y"))

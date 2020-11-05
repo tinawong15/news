@@ -5,23 +5,30 @@ Search
 {% endblock %}
 
 {% block content %}
-<p class="display-4 text-center">Search</p>
+<br>
 <div class="row justify-content-center">
-<form class="form-inline" action="/search" method="POST">
+<div class="card text-center text-white bg-dark mb-3" style="border-radius: 10px !important; max-width: 50rem;">
+<div class="card-body">
+<p class="display-4">Search</p>
+<p class="card-text text-center mb-3" style="max-width: 40rem;">Enter all the keywords you would like to be included in the search and select all the categories you would like to search in.</p>
+<form class="form-inline justify-content-center mt-4" action="/search" method="POST">
     <input class="form-control form-control-lg mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
       <select id="category" class="form-control form-control-lg selectpicker mr-sm-2" multiple>
         <option value="entertainment">Entertainment</option>
         <option value="sports">Sports</option>
         <option value="technology">Technology</option>
       </select>
-    <input class="btn btn-lg btn-outline-success my-2 my-sm-0" type="submit" onclick="getValues()" name="go" value="Go!">
+    <input class="btn btn-lg btn-success my-2 my-sm-0" type="submit" onclick="getValues()" name="go" value="Go!">
     <input type="hidden" name="tag_list" id="tag_list" value="" />
 </form>
-</div>
 <br>
+</div>
+</div>
+</div>
 <br>
 
 {% if entertainment != {} %}
+<hr>
 <h2 class="h2 mb-3 text-center">Entertainment Results</h2>
 {% for key, value in entertainment.items() %}
 <div class="mb-3">
@@ -60,6 +67,7 @@ Search
 {% endfor %}
 {% endif %}
 {% if sports != {} %}
+<hr>
 <h2 class="h2 mb-3 text-center">Sports Results</h2>
 {% for key, value in sports.items() %}
 <div class="mb-3">
@@ -98,6 +106,7 @@ Search
 {% endfor %}
 {% endif %}
 {% if technology != {} %}
+<hr>
 <h2 class="h2 mb-3 text-center">Technology Results</h2>
 {% for key, value in technology.items() %}
 <div class="mb-3">

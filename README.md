@@ -1,12 +1,13 @@
 # The Daily
 
 ## Overview
-The Daily is my submission for Capital One's 2020 Software Engineering Summit. It is a web application designed to streamline the process of finding top headlines and relevant news articles. You can search specifically for the categories of Entertainment, Sports, and Technology.
+The Daily is my submission for Capital One's 2020 Software Engineering Summit. It is a web application designed to streamline the process of finding top headlines and relevant news articles. You can search for any article across the categories of Entertainment, Sports, and Technology.
 
 ## Tools and Libraries Used
 - **Flask**: Python web microframework
   - `pip install flask`
 - **flask-paginate**: paginate extension for Flask
+  - `pip install flask-paginate`
 - **Jinja2**: HTML templating
   - *Included in* `pip install flask`
 - **Bootstrap**: open-source CSS framework
@@ -16,7 +17,7 @@ The Daily is my submission for Capital One's 2020 Software Engineering Summit. I
 ## Features
 
 #### News API Usage
-When you visit the page for Entertainment, Sports, or Technology, you will see Top Headlines at the top of the page.
+When you visit the page for Entertainment, Sports, or Technology, you will see Top Headlines for the category.
 
 For each article, the following information about the article is displayed on the website:
 - title
@@ -31,7 +32,7 @@ For each article, the following information about the article is displayed on th
 When the articles are listed, the image appears next to the description of the article. If there is no image associated with the article, the Bootstrap column dedicated to the image is eliminated and the description of the article will fill up the entire horizontal space. If there is an image associated with the article but the website does not have the permission to access the image, the Bootstrap column dedicated to the image will still exist, but it will be blank.
 
 #### Search Functionality
-You will be able to search on the Search page. You can enter one or multiple keywords into the search bar, and all of the keywords will be taken into account in the search. Then, you can select one category, two of the categories, or all of the categories to search your keywords in by using the dropdown. If you would like to search a phrase rather than multiple different words, such as "New York Times" rather than "New", "York", "Times", enter the phrase in quotes.
+You will be able to search on the Search page. You can enter one or multiple keywords into the search bar, and all of the keywords will be taken into account in the search. Then, you can select one category, two of the categories, or all of the categories to search your keywords in by using the dropdown menu. If you select a category/categories but enter no keywords, all results in the categories selected will be displayed.
 
 If the search is successful, a message will flash at the top of the page, stating "Search is successful!"
 
