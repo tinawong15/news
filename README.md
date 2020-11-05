@@ -22,12 +22,12 @@ When you visit the page for Entertainment, Sports, or Technology, you will see T
 For each article, the following information about the article is displayed on the website:
 - title
 - link to article, which will open in a new tab
-- author (if exists. If not, the byline will only show the source.)
+- author (if exists for the news article. If not, the byline will only show the source.)
 - source
-- paywall (if exists for the news source)
+- paywall (if exists for the news source.)
 - date (converted from a format like this: `2018-04-12T13:00:00Z` to a more readable format of `April 12, 2018`)
-- description
-- image (if exists. More information in next paragraph)
+- description (if exists. If not, no description will show.)
+- image (if exists. More information in next paragraph.)
 
 When the articles are listed, the image appears next to the description of the article. If there is no image associated with the article, the Bootstrap column dedicated to the image is eliminated and the description of the article will fill up the entire horizontal space. If there is an image associated with the article but the website does not have the permission to access the image, the Bootstrap column dedicated to the image will still exist, but it will be blank.
 
