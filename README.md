@@ -38,6 +38,8 @@ You will be able to search on the Search page. You can enter one or multiple key
 
 If the search is successful, a message will flash at the top of the page, stating "Search is successful!"
 
+Then, you will have the list of results posted on the page, divided into "Entertainment Results," "Sports Results," and "Technology Results." If you selected multiple categories (like Entertainment and Sports), and there are no results from the Sports category, only articles belonging to the entertainment category will show up.
+
 #### Pagination
 The pages that show the top headlines for entertainment, sports, or technology are paginated. Only 10 results are displayed at a a time, and you can click on the next page, previous page, or any other page by clicking on the pagination bar at the bottom of the page.
 
